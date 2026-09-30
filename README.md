@@ -1,8 +1,8 @@
-Python Fundamentals
+Python Fundamentals and advanced python adding the file.
 
 ## Description
 This repository contains my daily Python fundamentals practice.
-It includes basic concepts, data structures, functions, and problem-solving programs.
+It includes basic concepts, data structures, functions, and problem-solving programs or also the machine learning problem solving the to find the pattern and to take a best decision through by the data and build best model. 
 
 ## Topics Covered
 - Variables
@@ -18,6 +18,13 @@ It includes basic concepts, data structures, functions, and problem-solving prog
 - Dictionaries
 - Functions
 - Practice Programs
+- libraries
+- pandas
+- numpy
+- scikit-learn
+- seaborn
+- matplotlib
+- pyspark
 
 ## Technologies Used
 - Python 3
