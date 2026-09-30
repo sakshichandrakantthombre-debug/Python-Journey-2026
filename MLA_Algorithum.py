@@ -389,32 +389,32 @@ mape
 
 
 
-# In[5]:
+# In[42]:
 
 
 import pandas as pd
 
 
-# In[6]:
+# In[43]:
 
 
 pd.read_csv(r"C:\Users\user\Desktop\MLA\CreditRisk59.csv")
 
 
-# In[7]:
+# In[44]:
 
 
 cr=pd.read_csv(r"C:\Users\user\Desktop\MLA\CreditRisk59.csv")
 cr.head(3)
 
 
-# In[8]:
+# In[45]:
 
 
 cr.isnull().sum()[cr.isnull().sum()>0]
 
 
-# In[9]:
+# In[46]:
 
 
 cr.Gender.fillna('Male', inplace = True)
@@ -426,7 +426,7 @@ cr. Credit_History. fillna(0, inplace = True)
 cr.Self_Employed.fillna('No', inplace= True)
 
 
-# In[10]:
+# In[47]:
 
 
 cr1=cr #just a back up
@@ -1121,20 +1121,20 @@ cr=cr.drop(['Loan_ID'],axis=1)
 cr
 
 
-# In[13]:
+# In[128]:
 
 
 from sklearn.model_selection import train_test_split
 cr_train,cr_test=train_test_split(cr,test_size=.2)
 
 
-# In[14]:
+# In[129]:
 
 
 cr.Loan_Status.value_counts()
 
 
-# In[15]:
+# In[130]:
 
 
 # over sampling
@@ -1143,7 +1143,7 @@ cr_train=pd.concat([cr_train,df1,df1,df1,df1])
 cr_train.shape
 
 
-# In[16]:
+# In[131]:
 
 
 cr_train_x=cr_train.iloc[:,0:-1]
@@ -1153,19 +1153,19 @@ cr_test_x=cr_test.iloc[:,0:-1]
 cr_test_y=cr_test.iloc[:,-1]
 
 
-# In[17]:
+# In[132]:
 
 
 cr_test_y
 
 
-# In[19]:
+# In[133]:
 
 
 from sklearn.tree import
 
 
-# In[12]:
+# In[ ]:
 
 
 from sklearn.tree import
@@ -1315,25 +1315,25 @@ plt.grid()
 
 # # CTG
 
-# In[21]:
+# In[ ]:
 
 
 pd.read_csv(r"C:\Users\user\Desktop\MLA\CTG.csv")
 
 
-# In[22]:
+# In[ ]:
 
 
 ctg=pd.read_csv(r"C:\Users\user\Desktop\MLA\CTG.csv")
 
 
-# In[23]:
+# In[ ]:
 
 
 ctg.isnull().sum()[ctg.isnull().sum()>0]
 
 
-# In[24]:
+# In[ ]:
 
 
 #ctg.info()
@@ -1345,14 +1345,14 @@ ctg.isnull().sum()[ctg.isnull().sum()>0]
 
 
 
-# In[25]:
+# In[ ]:
 
 
 from sklearn.model_selection import train_test_split
 ctg_train,ctg_test=train_test_split(ctg,test_size=.2)
 
 
-# In[26]:
+# In[ ]:
 
 
 # over sampling
@@ -1363,13 +1363,13 @@ ctg_train,ctg_test=train_test_split(ctg,test_size=.2)
 #ctg_train.shape
 
 
-# In[27]:
+# In[ ]:
 
 
 ctg.NSP.value_counts()
 
 
-# In[28]:
+# In[ ]:
 
 
 ctg_train_x=ctg_train.iloc[:,0:-1]
@@ -1385,7 +1385,7 @@ ctg_test_y=ctg_test.iloc[:,-1]
 
 
 
-# In[29]:
+# In[ ]:
 
 
 from sklearn.tree import DecisionTreeClassifier
@@ -1398,55 +1398,55 @@ dt_ctg=DecisionTreeClassifier(class_weight='balanced')
 
 
 
-# In[30]:
+# In[ ]:
 
 
 dt_ctg.fit(ctg_train_x,ctg_train_y)
 
 
-# In[31]:
+# In[ ]:
 
 
 pred_test_ctg=dt_ctg.predict(ctg_test_x)
 
 
-# In[32]:
+# In[ ]:
 
 
 from sklearn.metrics import confusion_matrix,accuracy_score,precision_score,recall_score,f1_score
 
 
-# In[33]:
+# In[ ]:
 
 
 tab_ctg= confusion_matrix(ctg_test_y,pred_test_ctg)
 
 
-# In[34]:
+# In[ ]:
 
 
 tab_ctg
 
 
-# In[35]:
+# In[ ]:
 
 
 accuracy_score(ctg_test_y,pred_test_ctg) # accuracy score model how much predicted right or corrected.
 
 
-# In[38]:
+# In[ ]:
 
 
 precision_score(ctg_test_y,pred_test_ctg,average='macro')
 
 
-# In[39]:
+# In[ ]:
 
 
 recall_score(ctg_test_y,pred_test_ctg,average='macro')
 
 
-# In[40]:
+# In[ ]:
 
 
 f1_score(ctg_test_y,pred_test_ctg,average='macro')
@@ -1460,13 +1460,13 @@ f1_score(ctg_test_y,pred_test_ctg,average='macro')
 
 # # Grid Search
 
-# In[41]:
+# In[ ]:
 
 
 from sklearn.model_selection import GridSearchCV
 
 
-# In[55]:
+# In[ ]:
 
 
 search_dict = {'criterion':['gini','entropy'],
@@ -1474,20 +1474,20 @@ search_dict = {'criterion':['gini','entropy'],
               'min_samples_split':[50,75,100]}
 
 
-# In[56]:
+# In[ ]:
 
 
 dt_ctg=DecisionTreeClassifier()
 grid=GridSearchCV(dt_ctg,param_grid=search_dict)
 
 
-# In[57]:
+# In[ ]:
 
 
 grid.fit(ctg_train_x,ctg_train_y)
 
 
-# In[59]:
+# In[ ]:
 
 
 grid.best_params_
@@ -1495,13 +1495,13 @@ grid.best_params_
 
 # # Random Search
 
-# In[60]:
+# In[ ]:
 
 
 from sklearn.model_selection import RandomizedSearchCV
 
 
-# In[61]:
+# In[ ]:
 
 
 search_dict1 = {'criterion':['gini','entropy'],
@@ -1509,13 +1509,13 @@ search_dict1 = {'criterion':['gini','entropy'],
               'min_samples_split':[50,75,100]}
 
 
-# In[62]:
+# In[ ]:
 
 
 dt_ctg=DecisionTreeClassifier()
 
 
-# In[63]:
+# In[ ]:
 
 
 random_search=RandomizedSearchCV(
@@ -1528,13 +1528,13 @@ random_search=RandomizedSearchCV(
 
 
 
-# In[64]:
+# In[ ]:
 
 
 random_search.fit(ctg_train_x,ctg_train_y)
 
 
-# In[65]:
+# In[ ]:
 
 
 random_search.best_params_
@@ -1546,7 +1546,7 @@ random_search.best_params_
 
 
 
-# In[66]:
+# In[ ]:
 
 
 tab_ctg_df=pd.DataFrame(tab_ctg)
@@ -1554,7 +1554,7 @@ tab_ctg_df.columns=['Normal','suspect','pathalogical']
 tab_ctg_df.index=['Normal','suspect','pathalogical']
 
 
-# In[67]:
+# In[ ]:
 
 
 tab_ctg_df
@@ -1566,19 +1566,19 @@ tab_ctg_df
 
 
 
-# In[68]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('pip', 'install pydotplus')
 
 
-# In[69]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('pip', 'install pydot')
 
 
-# In[70]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('pip', 'install dot')
@@ -1590,7 +1590,7 @@ get_ipython().run_line_magic('pip', 'install dot')
 #conda install graphviz
 
 
-# In[71]:
+# In[ ]:
 
 
 from IPython.display import Image
@@ -1600,13 +1600,13 @@ import pydot
 from six import StringIO
 
 
-# In[72]:
+# In[ ]:
 
 
 dt_ctg.fit(ctg_train_x,ctg_train_y)
 
 
-# In[73]:
+# In[ ]:
 
 
 dot_data = StringIO()
@@ -1700,37 +1700,37 @@ Image(graph.create_png())
 
 
 
-# In[74]:
+# In[ ]:
 
 
 pd.read_csv(r"C:\Users\user\MLA\Attrition.csv")
 
 
-# In[77]:
+# In[ ]:
 
 
 at=pd.read_csv(r"C:\Users\user\MLA\Attrition.csv")
 
 
-# In[78]:
+# In[ ]:
 
 
 at.isnull().sum()[at.isnull().sum()>0]
 
 
-# In[79]:
+# In[ ]:
 
 
 at.info()
 
 
-# In[80]:
+# In[ ]:
 
 
 at.Attrition.value_counts()
 
 
-# In[81]:
+# In[ ]:
 
 
 at.Attrition.replace({'No':0,'Yes':1},inplace=True)
@@ -1742,33 +1742,33 @@ at.Attrition.replace({'No':0,'Yes':1},inplace=True)
 at.select_dtypes(include='object').columns
 
 
-# In[82]:
+# In[ ]:
 
 
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
 
 
-# In[83]:
+# In[ ]:
 
 
 at[at.select_dtypes(include='object').columns]=at[at.select_dtypes(include='object').columns].apply(le.fit_transform)
 
 
-# In[84]:
+# In[ ]:
 
 
 at.head()
 
 
-# In[85]:
+# In[ ]:
 
 
 from sklearn.model_selection import train_test_split
 at_train,at_test=train_test_split(at,test_size=.2)
 
 
-# In[86]:
+# In[ ]:
 
 
 # over sampling
@@ -1777,27 +1777,27 @@ at_train=pd.concat([at_train,df1])
 at_train.shape
 
 
-# In[87]:
+# In[ ]:
 
 
 at_train_x=at_train.iloc[::,at.columns!='Attrition']
 at_train_y=at_train.Attrition
 
 
-# In[88]:
+# In[ ]:
 
 
 at_test_x=at_test.iloc[::,at.columns!='Attrition']
 at_test_y=at_test.Attrition
 
 
-# In[89]:
+# In[ ]:
 
 
 at_test_y
 
 
-# In[90]:
+# In[ ]:
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -1810,13 +1810,13 @@ rfc=RandomForestClassifier(n_estimators=250,criterion="entropy",)
 
 
 
-# In[91]:
+# In[ ]:
 
 
 rfc.fit(at_train_x,at_train_y)
 
 
-# In[92]:
+# In[ ]:
 
 
 #pred_train=rfc.predict(at_train_x)
@@ -1824,79 +1824,79 @@ pred_test=rfc.predict(at_test_x)
 pred_test
 
 
-# In[93]:
+# In[ ]:
 
 
 from sklearn.metrics import confusion_matrix,accuracy_score,recall_score,precision_score,f1_score
 
 
-# In[94]:
+# In[ ]:
 
 
 mat=confusion_matrix(at_test_y,pred_test)
 
 
-# In[95]:
+# In[ ]:
 
 
 mat
 
 
-# In[96]:
+# In[ ]:
 
 
 accuracy_score(at_test_y,pred_test)
 
 
-# In[97]:
+# In[ ]:
 
 
 recall_score(at_test_y,pred_test)
 
 
-# In[98]:
+# In[ ]:
 
 
 precision_score(at_test_y,pred_test)
 
 
-# In[99]:
+# In[ ]:
 
 
 f1_score(at_test_y,pred_test)
 
 
-# In[100]:
+# In[ ]:
 
 
 pred_prob_test=rfc.predict_proba(at_test_x)
 
 
-# In[101]:
+# In[ ]:
 
 
 from sklearn.metrics import roc_auc_score,roc_curve
 
 
-# In[102]:
+# In[ ]:
 
 
 roc_auc_score(at_test_y,pred_prob_test[:,1])
 
 
-# In[103]:
+# In[ ]:
 
 
 fpr,tpr,thr=roc_curve(at_test_y,pred_prob_test[:,1])
 
 
-# In[104]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
 
 
-# In[105]:
+# In[ ]:
 
 
 plt.plot(fpr,tpr,marker='*',color='green')
@@ -2512,13 +2512,13 @@ tr_lasso[tr_lasso.coef!=0]
 
 # # SVM
 
-# In[261]:
+# In[ ]:
 
 
 import pandas as pd
 
 
-# In[262]:
+# In[ ]:
 
 
 # SVM
@@ -2576,37 +2576,37 @@ import pandas as pd
 
 
 
-# In[263]:
+# In[ ]:
 
 
 import pandas as pd
 
 
-# In[264]:
+# In[ ]:
 
 
 pd.read_csv(r"C:\Users\user\Desktop\MLA\CTG.csv")
 
 
-# In[265]:
+# In[ ]:
 
 
 sv=pd.read_csv(r"C:\Users\user\Desktop\MLA\CTG.csv")
 
 
-# In[266]:
+# In[ ]:
 
 
 sv.isnull().sum()[sv.isnull().sum()>0]
 
 
-# In[267]:
+# In[ ]:
 
 
 sv.select_dtypes(include='object').columns
 
 
-# In[268]:
+# In[ ]:
 
 
 sv.education.replace({'basic.4y':1, 'high.school':4, 'basic.6y':2, 'basic.9y':3,
@@ -2620,33 +2620,33 @@ sv.day_of_week.replace({'mon':1, 'tue':2, 'wed':3, 'thu':4, 'fri':5},inplace= Tr
 sv.poutcome.replace({'nonexistent':0, 'failure':1, 'success':2},inplace= True)
 
 
-# In[269]:
+# In[ ]:
 
 
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
 
 
-# In[270]:
+# In[ ]:
 
 
 sv[sv.select_dtypes(include='object').columns]=sv[sv.select_dtypes(include='object').columns].apply(le.fit_transform)
 
 
-# In[271]:
+# In[ ]:
 
 
 sv.y.value_counts()
 
 
-# In[272]:
+# In[ ]:
 
 
 from sklearn.model_selection import train_test_split
 sv_train,sv_test=train_test_split(sv,test_size=.2)
 
 
-# In[275]:
+# In[ ]:
 
 
 # oversampling
@@ -2654,7 +2654,7 @@ df1=sv_train[sv_train.y==1]
 sv_train=pd.concat([sv_train,df1,df1])
 
 
-# In[274]:
+# In[ ]:
 
 
 sv_train_x=sv_train.iloc[::,:-1]
@@ -2836,38 +2836,38 @@ sklearn.metrics.get_scorer_names()
 import pandas as pd
 
 
-# In[106]:
+# In[ ]:
 
 
 pd.read_csv(r"C:\Users\user\Desktop\MLA\CTG.csv")
 
 
-# In[107]:
+# In[ ]:
 
 
 ctg=pd.read_csv(r"C:\Users\user\Desktop\MLA\CTG.csv")
 
 
-# In[108]:
+# In[ ]:
 
 
 ctg.isnull().sum()[ctg.isnull().sum()>0]
 
 
-# In[109]:
+# In[ ]:
 
 
 from sklearn.model_selection import train_test_split
 ctg_train,ctg_test=train_test_split(ctg,test_size=.2)
 
 
-# In[110]:
+# In[ ]:
 
 
 ctg.NSP.value_counts()
 
 
-# In[111]:
+# In[ ]:
 
 
 #over sampling
@@ -2882,7 +2882,7 @@ ctg_train=pd.concat([ctg_train,df3,df3,df3,df3,df2])
 
 
 
-# In[112]:
+# In[ ]:
 
 
 ctg_train_x=ctg_train.iloc[:,0:-1]
@@ -2892,63 +2892,63 @@ ctg_test_x=ctg_test.iloc[:,0:-1]
 ctg_test_y=ctg_test.iloc[:,-1]
 
 
-# In[113]:
+# In[ ]:
 
 
 ctg_test_y
 
 
-# In[114]:
+# In[ ]:
 
 
 from sklearn.neighbors import KNeighborsClassifier
 knn=KNeighborsClassifier(n_neighbors=37)
 
 
-# In[115]:
+# In[ ]:
 
 
 knn.fit(ctg_train_x,ctg_train_y)
 
 
-# In[116]:
+# In[ ]:
 
 
 pred_knn=knn.predict(ctg_test_x)
 
 
-# In[117]:
+# In[ ]:
 
 
 from sklearn.metrics import confusion_matrix,classification_report,accuracy_score
 
 
-# In[118]:
+# In[ ]:
 
 
 tab_knn=confusion_matrix(ctg_test_y,pred_knn)
 
 
-# In[119]:
+# In[ ]:
 
 
 tab_knn
 
 
-# In[120]:
+# In[ ]:
 
 
 #tab_knn.diagonal().sum()/tab_knn.sum()
 accuracy_score(ctg_test_y,pred_knn)
 
 
-# In[121]:
+# In[ ]:
 
 
 print(classification_report(ctg_test_y,pred_knn))
 
 
-# In[122]:
+# In[ ]:
 
 
 l1=[]
@@ -2961,7 +2961,7 @@ for k in range(1,100):
     l1.append(acc)
 
 
-# In[189]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -2974,7 +2974,7 @@ import seaborn as sns
 
 
 
-# In[190]:
+# In[ ]:
 
 
 plt.figure(figsize=(15,6))
@@ -2982,7 +2982,7 @@ plt.plot(list(range(1, 51)), l1[:50], marker='*')
 plt.grid()
 
 
-# In[191]:
+# In[ ]:
 
 
 plt.figure(figsize=(15,6))
@@ -3085,7 +3085,7 @@ plt.grid()
 # lasso
 
 
-# In[ ]:
+# In[212]:
 
 
 import pandas as pd
@@ -3093,25 +3093,25 @@ import pandas as pd
 
 # # Boruta
 
-# In[137]:
+# In[213]:
 
 
 pd.read_csv(r"C:\Users\user\Desktop\MLA\CreditRisk59.csv")
 
 
-# In[138]:
+# In[214]:
 
 
 cr=pd.read_csv(r"C:\Users\user\Desktop\MLA\CreditRisk59.csv")
 
 
-# In[139]:
+# In[215]:
 
 
 cr.isnull().sum()[cr.isnull().sum()>0]
 
 
-# In[140]:
+# In[216]:
 
 
 cr.Gender.fillna('Male', inplace = True)
@@ -3123,32 +3123,32 @@ cr. Credit_History. fillna(0, inplace = True)
 cr.Self_Employed.fillna('No', inplace= True)
 
 
-# In[141]:
+# In[217]:
 
 
 cr.select_dtypes(include='object').columns
 
 
-# In[142]:
+# In[218]:
 
 
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
 
 
-# In[143]:
+# In[219]:
 
 
 cr[cr.select_dtypes(include='object').columns] = cr[cr.select_dtypes(include='object').columns].apply(le.fit_transform)
 
 
-# In[144]:
+# In[220]:
 
 
 cr=cr.drop(['Loan_ID'],axis=1)
 
 
-# In[145]:
+# In[221]:
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -3156,7 +3156,7 @@ from boruta import BorutaPy
 import numpy as np
 
 
-# In[146]:
+# In[222]:
 
 
 get_ipython().run_line_magic('pip', 'install boruta')
@@ -3168,7 +3168,7 @@ get_ipython().run_line_magic('pip', 'install boruta')
 
 
 
-# In[147]:
+# In[223]:
 
 
 cr_x = cr.iloc[:, 0:11]
@@ -3176,7 +3176,7 @@ cr_x1 = cr.iloc[:, 0:11] # just a back up
 cr_y = cr.iloc[:, -1]
 
 
-# In[148]:
+# In[224]:
 
 
 cr_x = np.array(cr_x)
@@ -3184,7 +3184,7 @@ cr_y = np.array(cr_y)
 cr_y
 
 
-# In[125]:
+# In[225]:
 
 
 rf = RandomForestClassifier()
@@ -3193,25 +3193,25 @@ boruta_Feature_selector.fit(cr_x, cr_y)
 
 
 
-# In[127]:
+# In[226]:
 
 
 get_ipython().run_line_magic('pip', 'install --upgrade numpy==1.23.5')
 
 
-# In[128]:
+# In[227]:
 
 
 boruta_Feature_selector.support_
 
 
-# In[ ]:
+# In[228]:
 
 
 cr_x1.columns
 
 
-# In[ ]:
+# In[229]:
 
 
 feat_imp = pd.DataFrame()
@@ -3251,27 +3251,27 @@ feat_imp
 
 # # RFE
 
-# In[ ]:
+# In[208]:
 
 
 from sklearn.tree import DecisionTreeClassifier
 dt=DecisionTreeClassifier(  criterion='entropy')
 
 
-# In[ ]:
+# In[209]:
 
 
 from sklearn.feature_selection import RFE
 rfe=RFE(dt,n_features_to_select=3)
 
 
-# In[ ]:
+# In[210]:
 
 
 rfe.fit(cr_x, cr_y)
 
 
-# In[ ]:
+# In[211]:
 
 
 rfe.support_
@@ -3283,7 +3283,7 @@ rfe.support_
 import numpy as  np
 
 
-# In[156]:
+# In[ ]:
 
 
 feat_imp_dt = pd.DataFrame()
@@ -3324,19 +3324,19 @@ pd.read_csv(r"C:\Users\user\Desktop\MLA\Property_Price_Train (1).csv")
 ppt=pd.read_csv(r"C:\Users\user\Desktop\MLA\Property_Price_Train (1).csv")
 
 
-# In[161]:
+# In[ ]:
 
 
 ppt.select_dtypes(include='object').columns
 
 
-# In[162]:
+# In[ ]:
 
 
 ppt.isnull().sum()[ppt.isnull().sum()>0]
 
 
-# In[163]:
+# In[ ]:
 
 
 ppt.Lot_Extent.fillna(ppt.Lot_Extent .mean().round(2), inplace=True)
@@ -3360,7 +3360,7 @@ ppt.Fence_Quality.fillna('MnPrv', inplace=True)
 ppt.Miscellaneous_Feature.fillna('Shed', inplace=True)
 
 
-# In[164]:
+# In[ ]:
 
 
 ppt.Zoning_Class.replace({'RLD':0, 'RMD':1, 'Commer':2, 'FVR':3, 'RHD':4},inplace=True)
@@ -3427,26 +3427,26 @@ ppt = ppt.drop(['Id','Lane_Type','Fence_Quality','Miscellaneous_Feature','Pool_Q
 ppt = ppt.drop (['Fireplace_Quality'], axis = 1)
 
 
-# In[165]:
+# In[ ]:
 
 
 from sklearn.feature_selection import VarianceThreshold
 var=VarianceThreshold(threshold=.1)
 
 
-# In[166]:
+# In[ ]:
 
 
 var.fit(ppt)
 
 
-# In[167]:
+# In[ ]:
 
 
 var.get_support()
 
 
-# In[168]:
+# In[ ]:
 
 
 l3=[]
@@ -3455,19 +3455,19 @@ for i in range (0,len(var.get_support())):
         l3.append(ppt.columns[i])
 
 
-# In[169]:
+# In[ ]:
 
 
 l3
 
 
-# In[170]:
+# In[ ]:
 
 
 ppt=ppt.loc[:,l3]
 
 
-# In[171]:
+# In[ ]:
 
 
 ppt
@@ -3516,45 +3516,45 @@ ppt
 # r taken in 2nd boost 300 gives me correct pred and 100 wrong pred so in 3rd boost only 100 records are taken and so on
 
 
-# In[ ]:
+# In[230]:
 
 
 import pandas as pd
 
 
-# In[192]:
+# In[231]:
 
 
 pd.read_csv(r"C:\Users\user\Desktop\MLA\trainRF.csv")
 
 
-# In[193]:
+# In[232]:
 
 
 mp=pd.read_csv(r"C:\Users\user\Desktop\MLA\trainRF.csv")
 
 
-# In[194]:
+# In[233]:
 
 
 mp.isnull().sum()[mp.isnull().sum()>0]
 
 
-# In[195]:
+# In[237]:
 
 
 from sklearn.model_selection import train_test_split
 mp_train,mp_test=train_test_split(mp,test_size=.2)
 
 
-# In[196]:
+# In[238]:
 
 
 mp_train_x=mp_train.iloc[::,:-1]
 mp_train_y=mp_train.iloc[::,-1]
 
 
-# In[197]:
+# In[239]:
 
 
 mp_test_x=mp_test.iloc[::,:-1]
@@ -3563,44 +3563,44 @@ mp_test_y=mp_test.iloc[::,-1]
 
 # # Decision tree
 
-# In[198]:
+# In[240]:
 
 
 from sklearn.tree import DecisionTreeClassifier
 dt_mp=DecisionTreeClassifier(criterion='entropy')
 
 
-# In[199]:
+# In[241]:
 
 
 dt_mp.fit(mp_train_x,mp_train_y)
 
 
-# In[200]:
+# In[242]:
 
 
 pred=dt_mp.predict(mp_test_x)
 
 
-# In[201]:
+# In[243]:
 
 
 from sklearn.metrics import confusion_matrix,accuracy_score
 
 
-# In[202]:
+# In[244]:
 
 
 tab=confusion_matrix(mp_test_y,pred)
 
 
-# In[203]:
+# In[245]:
 
 
 tab
 
 
-# In[204]:
+# In[246]:
 
 
 accuracy_score(mp_test_y,pred)
@@ -3608,50 +3608,50 @@ accuracy_score(mp_test_y,pred)
 
 # # Decision tree Ada boost
 
-# In[205]:
+# In[248]:
 
 
 from sklearn.ensemble import AdaBoostClassifier
 add=AdaBoostClassifier(dt_mp)
 
 
-# In[206]:
+# In[249]:
 
 
 add.fit(mp_train_x,mp_train_y)
 
 
-# In[207]:
+# In[250]:
 
 
 pred_add=add.predict(mp_test_x)
 
 
-# In[208]:
+# In[251]:
 
 
 tab_add=confusion_matrix(mp_test_y,pred_add)
 
 
-# In[209]:
+# In[252]:
 
 
 tab_add
 
 
-# In[210]:
+# In[253]:
 
 
 accuracy_score(mp_test_y,pred_add)
 
 
-# In[211]:
+# In[254]:
 
 
 add.feature_importances_
 
 
-# In[212]:
+# In[255]:
 
 
 fet=pd.DataFrame()
@@ -3660,7 +3660,7 @@ fet['imp']=add.feature_importances_
 fet
 
 
-# In[213]:
+# In[256]:
 
 
 fet=fet.sort_values('imp',ascending=False)
@@ -3669,38 +3669,38 @@ fet
 
 # # random forest
 
-# In[214]:
+# In[257]:
 
 
 from sklearn.ensemble import RandomForestClassifier
 rfc_mp=RandomForestClassifier(n_estimators=50)
 
 
-# In[215]:
+# In[258]:
 
 
 rfc_mp.fit(mp_train_x,mp_train_y)
 
 
-# In[216]:
+# In[260]:
 
 
 pred_rfc=rfc_mp.predict(mp_test_x)
 
 
-# In[217]:
+# In[261]:
 
 
 tab_rfc=confusion_matrix(mp_test_y,pred_rfc)
 
 
-# In[218]:
+# In[262]:
 
 
 tab_rfc
 
 
-# In[219]:
+# In[263]:
 
 
 accuracy_score(mp_test_y,pred_rfc)
@@ -3708,38 +3708,38 @@ accuracy_score(mp_test_y,pred_rfc)
 
 # # random forest Ada boost
 
-# In[220]:
+# In[264]:
 
 
 from sklearn.ensemble import AdaBoostClassifier
 add_rfc=AdaBoostClassifier(rfc_mp,n_estimators=20)
 
 
-# In[221]:
+# In[265]:
 
 
 add_rfc.fit(mp_train_x,mp_train_y)
 
 
-# In[222]:
+# In[266]:
 
 
 pred_add_rfc=add_rfc.predict(mp_test_x)
 
 
-# In[223]:
+# In[267]:
 
 
 tab_add_rfc=confusion_matrix(mp_test_y,pred_add_rfc)
 
 
-# In[224]:
+# In[268]:
 
 
 tab_add_rfc
 
 
-# In[225]:
+# In[269]:
 
 
 accuracy_score(mp_test_y,pred_add_rfc)
@@ -4279,99 +4279,99 @@ plt.show()
 
 # # Hierarchical Clustering
 
-# In[226]:
+# In[ ]:
 
 
 import pandas as pd
 
 
-# In[129]:
+# In[ ]:
 
 
 mall = pd.read_csv(r'C:\Users\user\Desktop\MLA\mall_kmeans.csv')
 
 
-# In[130]:
+# In[ ]:
 
 
 mall.head()
 
 
-# In[131]:
+# In[ ]:
 
 
 mall.drop('CustomerID', axis=1, inplace=True)
 
 
-# In[132]:
+# In[ ]:
 
 
 mall.rename(columns={'Annual Income (k$)': 'Income', 'Spending Score (1-100)': 'Score'}, inplace=True)
 
 
-# In[133]:
+# In[ ]:
 
 
 mall['Genre'].replace({'Female': 0, 'Male': 1}, inplace=True)
 
 
-# In[232]:
+# In[ ]:
 
 
 mall.head()
 
 
-# In[233]:
+# In[ ]:
 
 
 from sklearn.cluster import AgglomerativeClustering
 
 
-# In[234]:
+# In[ ]:
 
 
 agg_mall = AgglomerativeClustering(n_clusters=5, linkage='ward', metric='euclidean')
 #mall['Cluster'] = agg_mall.fit_predict(mall)
 
 
-# In[235]:
+# In[ ]:
 
 
 agg_mall.fit(mall)
 
 
-# In[236]:
+# In[ ]:
 
 
 agg_mall.labels_
 
 
-# In[237]:
+# In[ ]:
 
 
 len(agg_mall.labels_)
 
 
-# In[238]:
+# In[ ]:
 
 
 from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
 
 
 
-# In[239]:
+# In[ ]:
 
 
 mall['Cluster'] = agg_mall.fit_predict(mall)
 
 
-# In[240]:
+# In[ ]:
 
 
 mall['Cluster'].value_counts()
 
 
-# In[241]:
+# In[ ]:
 
 
 # Features only (excluding cluster labels)
@@ -4379,7 +4379,7 @@ X = mall.drop('Cluster', axis=1)
 labels = mall['Cluster']
 
 
-# In[242]:
+# In[ ]:
 
 
 # Evaluation metrics
@@ -4393,13 +4393,13 @@ sil_score
 
 
 
-# In[243]:
+# In[ ]:
 
 
 mall.head()
 
 
-# In[244]:
+# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -4407,13 +4407,13 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 import numpy as np
 
 
-# In[245]:
+# In[ ]:
 
 
 # single, complete,ward
 
 
-# In[246]:
+# In[ ]:
 
 
 # Dendrogram to help choose number of clusters (optional but useful)
@@ -4427,7 +4427,7 @@ plt.grid()
 plt.show()
 
 
-# In[247]:
+# In[ ]:
 
 
 # Scatter plot: Age vs Spending Score colored by cluster
@@ -4461,13 +4461,13 @@ plt.show()
 
 # # PCA
 
-# In[ ]:
+# In[181]:
 
 
 import pandas as pd
 
 
-# In[ ]:
+# In[182]:
 
 
 #  PCA----> It is a dimensition Reduction Tech,-->reduce col. or row
@@ -4521,37 +4521,37 @@ import pandas as pd
 
 
 
-# In[ ]:
+# In[183]:
 
 
-pd.read_csv(r'C:\Users\sudha\OneDrive\Desktop\files\Files\Property_Price_Train.csv')
+pd.read_csv(r"C:\Users\user\Desktop\MLA\Property_Price_Train.csv")
 
 
-# In[ ]:
+# In[184]:
 
 
-pp=pd.read_csv(r'C:\Users\sudha\OneDrive\Desktop\files\Files\Property_Price_Train.csv')
+pp=pd.read_csv(r"C:\Users\user\Desktop\MLA\Property_Price_Train.csv")
 
 
-# In[ ]:
+# In[185]:
 
 
 pp.select_dtypes(include='object').columns
 
 
-# In[ ]:
+# In[186]:
 
 
 pp.isnull().sum()[pp.isnull().sum()>0]  #these are the cols which contain nulls
 
 
-# In[ ]:
+# In[187]:
 
 
 pp=pp.drop(['Id','Fireplace_Quality','Pool_Quality','Fence_Quality','Miscellaneous_Feature','Lane_Type'],axis=1)
 
 
-# In[ ]:
+# In[188]:
 
 
 pp.Lot_Extent.fillna(pp.Lot_Extent.mean(),inplace=True)
@@ -4575,19 +4575,19 @@ pp.Garage_Condition.fillna('TA',inplace=True)
 #pp.Miscellaneous_Feature.fillna('Shed ',inplace=True)
 
 
-# In[ ]:
+# In[189]:
 
 
 pp.isnull().sum()[pp.isnull().sum()>0]
 
 
-# In[ ]:
+# In[190]:
 
 
 from sklearn.preprocessing import LabelEncoder
 
 
-# In[ ]:
+# In[191]:
 
 
 le=LabelEncoder()
@@ -4595,95 +4595,95 @@ le=LabelEncoder()
 pp[pp.select_dtypes(include='object').columns] = pp[pp.select_dtypes(include='object').columns].apply(le.fit_transform)
 
 
-# In[ ]:
+# In[192]:
 
 
 pp.head()
 
 
-# In[ ]:
+# In[193]:
 
 
 pp.columns
 
 
-# In[ ]:
+# In[194]:
 
 
 pp1=pp
 
 
-# In[ ]:
+# In[195]:
 
 
 pp=pp.drop(['Sale_Price'],axis=1)
 
 
-# In[ ]:
+# In[196]:
 
 
 pp.shape
 
 
-# In[ ]:
+# In[197]:
 
 
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 
 
-# In[ ]:
+# In[198]:
 
 
 scaled_pp =scaler.fit_transform(pp)
 scaled_pp
 
 
-# In[ ]:
+# In[199]:
 
 
 from sklearn import decomposition
 from sklearn.decomposition import PCA
 
 
-# In[ ]:
+# In[200]:
 
 
 pca =PCA(n_components=55)  # create an instance
 
 
-# In[ ]:
+# In[201]:
 
 
 x_pca1=pca.fit_transform(scaled_pp)
 #PCA has been performed
 
 
-# In[ ]:
+# In[202]:
 
 
 pca.explained_variance_ratio_
 
 
-# In[ ]:
+# In[203]:
 
 
 l1=list(pca.explained_variance_ratio_)
 
 
-# In[ ]:
+# In[204]:
 
 
 len(l1)
 
 
-# In[ ]:
+# In[205]:
 
 
 pca.explained_variance_ratio_.sum()
 
 
-# In[ ]:
+# In[206]:
 
 
 # explained_variance_ratio_: how much variance each principal component explains.
@@ -4691,44 +4691,44 @@ pca.explained_variance_ratio_.sum()
 # np.sum(l1[0:55]): total variance explained by the first 55 components.
 
 
-# In[ ]:
+# In[158]:
 
 
 import numpy as np
 
 
-# In[ ]:
+# In[159]:
 
 
 np.sum(l1[0:55])
 
 
-# In[ ]:
+# In[160]:
 
 
 df=pd.DataFrame(x_pca1[:,0:55])
 
 
-# In[ ]:
+# In[161]:
 
 
 from sklearn.linear_model import LinearRegression
 linreg =LinearRegression()
 
 
-# In[ ]:
+# In[162]:
 
 
 linreg.fit(df,pp1.Sale_Price)
 
 
-# In[ ]:
+# In[207]:
 
 
 linreg.score(df,pp1.Sale_Price)
 
 
-# In[ ]:
+# In[164]:
 
 
 # Trains a Linear Regression model using top 55 components.
@@ -4736,39 +4736,39 @@ linreg.score(df,pp1.Sale_Price)
 # score() returns the R² value — proportion of variance in Sale_Price explained by the model.
 
 
-# In[ ]:
+# In[165]:
 
 
 #1st principle component would be the most importanat follwed by 2nd and 3rd and so on....
 
 
-# In[ ]:
+# In[166]:
 
 
 df1=pd.DataFrame(x_pca1)
 
 
-# In[ ]:
+# In[167]:
 
 
 df1.corr().round(3) # since there is no co-relation between cols
 
 
-# In[ ]:
+# In[168]:
 
 
 # Shows correlation between all PCA components. Since PCA creates orthogonal (uncorrelated)
 # components, you should see near-zero correlations.
 
 
-# In[ ]:
+# In[169]:
 
 
 # PCA cannot be used for feature selection bcause there is not one on one mapping your
 # original column and the columns after transformation
 
 
-# In[ ]:
+# In[170]:
 
 
 #PCA is not feature selection; it's dimensionality reduction.
@@ -4778,22 +4778,52 @@ df1.corr().round(3) # since there is no co-relation between cols
 #PCA reduces multicollinearity since components are uncorrelated.
 
 
-# In[ ]:
+# In[171]:
 
 
 # So the result is a 74×74 correlation matrix.
 
 
-# In[ ]:
+# In[172]:
 
 
 pp.shape
 
 
-# In[ ]:
+# In[173]:
 
 
 pp1.shape
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
